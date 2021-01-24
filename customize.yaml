@@ -1,0 +1,40 @@
+  sensor.kamer_ronja_humidity:
+    device_class: humidity
+  sensor.badkamer_humidity:
+    device_class: humidity
+  sensor.woonkamer_humidity:
+    device_class: humidity
+  switch.arc_f7:
+    icon: mdi:speaker
+    assumed_state: false
+  switch.arc_d1:
+    icon: mdi:pine-tree  
+  switch.arc_d2:
+    icon: mdi:lightbulb  
+  switch.arc_d3: 
+    icon: mdi:power
+  light.volume:
+    icon: mdi:speaker
+    device_class: speaker
+  # media_player.sony_receiver:
+  #   icon: mdi:speaker
+  #   device_class: tv
+  #   source_list: [TV,Spotify]
+  media_player.sony_bravia_tv:
+    icon: mdi:television
+    device_class: tv
+    source_list: [NPO 1 HD,NPO 2 HD,NPO 3 HD,RTL 4 HD,RTL 5 HD,SBS 6 HD,Ziggo Sport,BBC One HD,BBC Two HD,NPO 1 extra,NPO Radio 1,NPO Radio 2,NPO 3FM,Sky Radio,NPO,Netflix,Prime Video,Youtube,Spotify]
+  sensor.hvc_gft:
+    icon: mdi:food-apple-outline
+    friendly_name: Groene bak
+    device_class: 
+  sensor.hvc_pmd:
+    icon: mdi:recycle
+    friendly_name: Oranje bak
+  sensor.power_production:
+    friendly_name: Stroomlevering
+    icon: mdi:solar-power
+  sensor.gas_consumption:
+    friendly_name: Gasverbruik
+
+  

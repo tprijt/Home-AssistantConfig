@@ -1,0 +1,430 @@
+
+title: Huis
+views:
+  - path: default_view
+    title: Home
+    background: var(--background-image)
+    cards:
+      - type: entities
+        title: Afval
+        entities:
+          - sensor.trash_first_up
+          - sensor.trash_next
+      - type: horizontal-stack
+        title: Geluid beneden
+        cards:
+        - type: button
+          name: Zachter
+          icon: mdi:volume-minus
+          tap_action: 
+            action: call-service
+            service: media_player.volume_down
+            service_data:
+              entity_id: media_player.sony_receiver
+        - type: button
+          name: Ok
+          icon: mdi:check
+          tap_action: 
+            action: call-service
+            service: media_player.volume_set
+            service_data:
+              entity_id: media_player.sony_receiver
+              volume_level: '0.13'
+        - type: button
+          name: Harder
+          icon: mdi:volume-plus
+          tap_action: 
+            action: call-service
+            service: media_player.volume_up
+            service_data:
+              entity_id: media_player.sony_receiver
+      - type: entities
+        entities:
+          - sensor.power_consumption
+          - sensor.power_production    
+          - sensor.gas_consumption      
+      - type: custom:banner-card
+        background: "wheat"
+        link: woonkamer
+        heading: "\U0001F6CB Woonkamer"
+        row_size: 2
+        entities:
+          - entity: sensor.woonkamer_temperature
+            name: Temperatuur
+          - entity: sensor.woonkamer_humidity
+            name: Vochtigheid
+      - type: custom:banner-card
+        background: "skyblue"
+        link: kamer_ronja
+        heading: "\U0001F984 Kamer Ronja"
+        row_size: 2
+        entities:
+          - entity: sensor.kamer_ronja_temperature
+            name: Temperatuur
+          - entity: sensor.kamer_ronja_humidity
+            name: Vochtigheid
+      - type: custom:banner-card
+        background: "palegoldenrod"
+        link: slaapkamer
+        heading: "\U0001F6CC Slaapkamer"
+        row_size: 2
+        entities:
+          - entity: switch.arc_c1
+            name: Kastverlichting
+      - type: custom:banner-card
+        background: "teal"
+        heading: "\U0001F6C1 Badkamer"
+        link: badkamer
+        row_size: 2
+        entities:
+          - entity: sensor.badkamer_temperature
+            name: Temperatuur
+          - entity: sensor.badkamer_humidity
+            name: Vochtigheid
+
+  - title: Klimaat
+    path: klimaat      
+    cards:
+      - type: vertical-stack
+        cards:
+        - type: custom:mini-graph-card
+          name: Temperatuur
+          entities:
+            - entity: sensor.kamer_ronja_temperature
+              name: Kamer Ronja
+              show_points: true
+              color: skyblue
+            - entity: sensor.woonkamer_temperature
+              name: Woonkamer
+              show_points: true
+              color: wheat
+            - entity: sensor.badkamer_temperature
+              name: Badkamer
+              show_points: true
+              color: teal
+            - entity: sensor.kantoor_temperature
+              name: Kantoor
+              show_points: true
+              color: grey
+          hours_to_show: 24
+          points_per_hour: 1
+          hour24: true
+          line_width: 3
+          show:
+            - points: true
+            - average: true
+            - extrema: true
+          tap_action:
+            action: none          
+      - type: vertical-stack
+        cards:       
+        - type: custom:mini-graph-card
+          name: Luchtvochtigheid
+          entities:
+            - entity: sensor.kamer_ronja_humidity
+              name: Kamer Ronja
+              show_points: true
+              color: skyblue
+            - entity: sensor.woonkamer_humidity
+              name: Woonkamer
+              show_points: true
+              color: wheat
+            - entity: sensor.badkamer_humidity
+              name: Badkamer
+              show_points: true
+              color: teal
+            - entity: sensor.kantoor_humidity
+              name: Kantoor
+              show_points: true
+              color: grey
+          hours_to_show: 24
+          points_per_hour: 1
+          hour24: true
+          line_width: 3
+          tap_action:
+            action: none
+        # - type: custom:mini-graph-card
+        #   name: Temperatuur
+        #   entities:
+        #     - entity: sensor.kamer_ronja_temperature
+        #       name: Kamer Ronja
+        #       show_points: true
+        #       color: skyblue
+        #     - entity: sensor.woonkamer_temperature
+        #       name: Woonkamer
+        #       show_points: true
+        #       color: wheat
+        #     - entity: sensor.badkamer_temperature
+        #       name: Badkamer
+        #       show_points: true
+        #       color: teal
+        #     - entity: sensor.kantoor_temperature
+        #       name: Kantoor
+        #       show_points: true
+        #       color: grey
+        #   hours_to_show: 168
+        #   points_per_hour: 0.1
+        #   hour24: true
+        #   line_width: 3
+        #   show:
+        #     - points: true
+        #     - average: true
+        #     - extrema: true
+        #   tap_action:
+        #     action: none          
+        # - type: custom:mini-graph-card
+        #   name: Luchtvochtigheid
+        #   entities:
+        #     - entity: sensor.kamer_ronja_humidity
+        #       name: Kamer Ronja
+        #       show_points: true
+        #       color: skyblue
+        #     - entity: sensor.woonkamer_humidity
+        #       name: Woonkamer
+        #       show_points: true
+        #       color: wheat
+        #     - entity: sensor.badkamer_humidity
+        #       name: Badkamer
+        #       show_points: true
+        #       color: teal
+        #     - entity: sensor.kantoor_humidity
+        #       name: Kantoor
+        #       show_points: true
+        #       color: grey
+        #   hours_to_show: 168
+        #   points_per_hour: 0.1
+        #   hour24: true
+        #   line_width: 3
+        #   tap_action:
+        #     action: none            
+  - title: Energie
+    path: energie     
+    cards:
+      - type: vertical-stack
+        cards:
+        - type: custom:mini-graph-card
+          name: Stroom per uur
+          group_by: hour
+          entities:
+            - entity: sensor.hourly_net_energy_consumption
+              name: Afname
+              color: red
+              aggregate_func: max            
+            - entity: sensor.hourly_solar_energy_production
+              name: Productie
+              color: yellow
+              aggregate_func: max              
+          hours_to_show: 24
+          hour24: true
+          show:
+            graph: bar
+            legend: false
+            labels: true
+        - type: custom:mini-graph-card
+          name: Gas per uur
+          group_by: hour
+          entities:
+            - entity: sensor.hourly_gas_consumption_alt
+              name: Gasafname
+              color: skyblue
+              aggregate_func: max
+          hours_to_show: 24
+          hour24: true
+          show:
+            graph: bar
+            labels: true
+            legend: false
+        - type: custom:mini-graph-card
+          name: Stroom per dag
+          group_by: date
+          entities:
+            - entity: sensor.daily_net_energy_consumption
+              name: Afname
+              color: red
+              aggregate_func: max            
+            # - entity: sensor.daily_solar_energy_production
+            #   name: Productie
+            #   color: yellow
+            #   aggregate_func: max              
+          hours_to_show: 168
+          hour24: true
+          show:
+            graph: bar
+            legend: false
+            labels: true
+        - type: custom:mini-graph-card
+          name: Gas per dag
+          group_by: date
+          entities:
+            - entity: sensor.daily_gas_consumption
+              name: Gasafname
+              color: skyblue
+              aggregate_func: max
+          hours_to_show: 168
+          hour24: true
+          show:
+            graph: bar
+            legend: false
+            labels: true
+
+  - title: Woonkamer
+    path: woonkamer
+    panel: false
+    visible: false
+    cards:
+      - type: vertical-stack
+        cards:
+        - type: custom:banner-card
+          background: "wheat"
+          heading: "\U0001F6CB Woonkamer"
+          link: default_view
+          row_size: 2
+          entities:
+            - entity: sensor.woonkamer_temperature
+              name: Temperatuur
+            - entity: sensor.woonkamer_humidity
+              name: Vochtigheid
+        - type: custom:mini-graph-card
+          name: Temperatuur
+          entities:
+            - entity: sensor.woonkamer_temperature
+              name: Woonkamer
+              show_points: true
+              color: wheat
+          hours_to_show: 24
+          points_per_hour: 1
+          animate: false
+          hour24: true
+          line_width: 3
+          tap_action:
+            action: none          
+        - type: custom:mini-graph-card
+          name: Vochtigheid
+          entities:
+            - entity: sensor.woonkamer_humidity
+              name: Woonkamer
+              show_points: true
+              color: wheat
+          hours_to_show: 24
+          points_per_hour: 1
+          animate: false
+          hour24: true
+          line_width: 3
+          tap_action:
+            action: none          
+
+  - title: Kamer Ronja
+    path: kamer_ronja
+    panel: false
+    visible: false
+    cards:
+      - type: vertical-stack
+        cards:
+        - type: custom:banner-card
+          background: "skyblue"
+          heading: "\U0001F984 Kamer Ronja"
+          link: default_view
+          row_size: 2
+          entities:
+            - entity: sensor.kamer_ronja_temperature
+              name: Temperatuur
+            - entity: sensor.kamer_ronja_humidity
+              name: Vochtigheid
+        - type: custom:mini-graph-card
+          name: Temperatuur
+          entities:
+            - entity: sensor.kamer_ronja_temperature
+              name: Kamer Ronja
+              show_points: true
+              color: skyblue
+          hours_to_show: 24
+          points_per_hour: 1
+          animate: false
+          hour24: true
+          line_width: 3
+          tap_action:
+            action: none          
+        - type: custom:mini-graph-card
+          name: Vochtigheid
+          entities:
+            - entity: sensor.kamer_ronja_humidity
+              name: Kamer Ronja
+              show_points: true
+              color: skyblue
+          hours_to_show: 24
+          points_per_hour: 1
+          animate: false
+          hour24: true
+          line_width: 3
+          tap_action:
+            action: none          
+
+  - title: Slaapkamer
+    path: slaapkamer
+    panel: false
+    visible: false
+    cards:
+      - type: vertical-stack
+        cards:
+        - type: custom:banner-card
+          background: "palegoldenrod"
+          link: default_view
+          heading: "\U0001F6CC Slaapkamer"
+          row_size: 2
+          entities:
+            - entity: switch.arc_c2
+              name: Bedlampje
+            - entity: switch.arc_c1
+              name: Kastverlichting
+            - entity: media_player.slaapkamer
+
+  - title: Badkamer
+    path: badkamer
+    panel: false
+    visible: false
+    cards:
+      - type: vertical-stack
+        cards:
+        - type: custom:banner-card
+          background: "teal"
+          heading: "\U0001F6C1 Badkamer"
+          link: default_view
+          row_size: 2
+          entities:
+            - entity: sensor.badkamer_temperature
+              name: Temperatuur
+            - entity: sensor.badkamer_humidity
+              name: Vochtigheid
+        - type: custom:mini-graph-card
+          name: Temperatuur
+          entities:
+            - entity: sensor.badkamer_temperature
+              name: Badkamer
+              show_points: true
+              color: teal
+          hours_to_show: 24
+          points_per_hour: 1
+          animate: false
+          hour24: true
+          line_width: 3
+          tap_action:
+            action: none          
+        - type: custom:mini-graph-card
+          name: Vochtigheid
+          entities:
+            - entity: sensor.badkamer_humidity
+              name: Badkamer
+              show_points: true
+              color: teal
+          hours_to_show: 24
+          points_per_hour: 1
+          animate: false
+          hour24: true
+          line_width: 3
+          tap_action:
+            action: none          
+
+
+  
+
+

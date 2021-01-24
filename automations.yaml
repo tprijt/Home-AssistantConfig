@@ -1,0 +1,84 @@
+- id: '1607934438883'
+  alias: Kerstverlichting nacht
+  description: ''
+  trigger:
+  - platform: time
+    at: 0:00
+  condition: []
+  action:
+  - type: turn_off
+    device_id: 412fdd793eff4979813f33515361b4ae
+    entity_id: switch.arc_d1
+    domain: switch
+  mode: single
+- id: '1608817716851'
+  alias: TV Geluid
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: input_boolean.tv_audio
+    from: 'off'
+    to: 'on'
+  condition: []
+  action:
+  - service: media_player.select_source
+    data:
+      source: TV
+    entity_id: media_player.sony_receiver
+  - delay: 00:00:03
+  - service: input_boolean.turn_off
+    data: {}
+    entity_id: input_boolean.tv_audio
+  mode: single
+- id: '1609427163277'
+  alias: TV scherm uit
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: input_boolean.tv_scherm
+    from: 'on'
+    to: 'off'
+  condition: []
+  action:
+  - service: rest_command.sony_bravia_tv_picture_off
+    data: {}
+  mode: single
+- id: '1609427463145'
+  alias: TV scherm aan
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: input_boolean.tv_scherm
+    from: 'off'
+    to: 'on'
+  condition: []
+  action:
+  - service: rest_command.sony_bravia_tv_picture_on
+    data: {}
+  mode: single
+- id: '1609597100296'
+  alias: Zet status tv scherm uit
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: sensor.tv_power_saving_state
+    to: pictureOff
+  condition: []
+  action:
+  - service: input_boolean.turn_off
+    data: {}
+    entity_id: input_boolean.tv_scherm
+  mode: single
+- id: '1609597337817'
+  alias: Zet status tv scherm aan
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: sensor.tv_power_saving_state
+    from: pictureOff
+  condition: []
+  action:
+  - service: input_boolean.turn_on
+    data: {}
+    entity_id: input_boolean.tv_scherm
+  mode: single

@@ -1,0 +1,146 @@
+  
+synthwave:
+  # text
+  primary-text-color: '#fff'
+  secondary-text-color: '#ffffffca'
+  text-primary-color: '#f4eee4'
+  disabled-text-color: '#bdbdbd'
+  
+  # main interface colors
+  primary-color: '#2a2139'
+  dark-primary-color: '#f92aad'
+  light-primary-color: '#241b2f'
+  accent-color: '#f92aad'
+  divider-color: '#49549539'
+  paper-dialog-button-color: '#fff'
+  
+  ###
+  
+  # background and sidebar
+  card-background-color: '#34294f88'
+  paper-card-background-color: 'var(--card-background-color)'
+  primary-background-color: 'var(--primary-color)' 
+  secondary-background-color: 'var(--light-primary-color)' # behind the cards on state
+  ha-card-border-radius: '0'
+  
+  # sidebar menu
+  sidebar-text-color: 'var(--secondary-text-color)'
+  # sidebar-background-color: 'var(--paper-listbox-background-color)' # backward compatible with existing themes
+  sidebar-icon-color: 'var(--secondary-text-color)'
+  sidebar-selected-text-color: 'var(--primary-text-color)'
+  sidebar-selected-icon-color: 'var(--primary-text-color)'
+
+  # controls
+  toggle-button-color: 'var(--primary-color)'
+  # --toggle-button-unchecked-color: 'var(--accent-color)'
+  slider-color: 'var(--primary-color)'
+  slider-secondary-color: 'var(--light-primary-color)'
+  # slider-bar-color: 'var(--disabled-text-color)'
+  
+  # mwc - for some reason it's buttons
+  mdc-theme-primary: 'var(--dark-primary-color)'
+  
+  # shadows
+  ha-card-box-shadow: '0'
+
+  # icons
+  paper-item-icon-color: 'var(--secondary-text-color)'  # Off
+  paper-item-icon-active-color: '#ffcc00' # On
+
+  # switches
+  paper-toggle-button-checked-button-color: '#FFF' # Knob On
+  paper-toggle-button-checked-bar-color: 'var(--dark-primary-color)' # Background On
+  paper-toggle-button-unchecked-button-color: '#FFF' # Knob Off
+  paper-toggle-button-unchecked-bar-color: 'var(--disabled-text-color)' # Background Off
+
+  # radio buttons
+  paper-radio-button-checked-color: 'var(--paper-toggle-button-checked-button-color)'
+  paper-radio-button-unchecked-color: 'var(--paper-toggle-button-unchecked-button-color)'
+
+  # other
+  state-icon-color: '#72f1b8cc'
+  table-row-background-color: 'var(--divider-color)'
+  table-row-alternative-background-color: 'var(--light-primary-color)'
+  
+  ###
+
+  # UI
+  paper-card-header-color: 'var(--text-primary-color)' # Title in settings
+
+  # Left Menu
+  paper-listbox-background-color: 'var(--light-primary-color)' # Background
+
+  # bar-card compatibility
+  # https://github.com/custom-cards/bar-card
+  custom-bar-card-color: 'var(--accent-color)'
+
+dark:
+  # Accent Colour (Edit this to change the accent) #
+  accent: "forestgreen" #"#FF4081"
+
+
+  # Background
+  primary-background-color: "#121212"
+
+  # Text
+  primary-text-color: "#FFFFFFDE"
+  secondary-text-color: "#FFFFFF99"
+  disabled-text-color: "#FFFFFF61"
+  sidebar-selected-text-color: "var(--accent)"
+
+  # Card
+  card-background-color: "#1D1D1D"
+  paper-card-background-color: "#1D1D1D"
+
+  # Colours
+  primary-color: "#1D1D1D"
+  secondary-background-color: "#1D1D1D"
+  accent-color: "var(--accent)"
+  dark-primary-color: "var(--accent)"
+  light-primary-color: "var(--accent)"
+
+  # Controls
+  toggle-button-color: "var(--accent)"
+  paper-toggle-button-checked-button-color: "var(--accent)"
+  paper-toggle-button-checked-bar-color: "var(--accent)"
+  paper-toggle-button-checked-ink-color: "var(--accent)"
+  paper-toggle-button-unchecked-button-color: "#A5A5A5"
+  paper-toggle-button-unchecked-bar-color: "#787878"
+  paper-checkbox-checked-color: "var(--accent)"
+  paper-checkbox-checked-ink-color: "var(--accent)"
+  paper-radio-button-checked-color: "var(--accent)"
+  paper-input-container-focus-color: "var(--accent)"
+  paper-dropdown-menu-focus-color: "var(--accent)"
+  slider-color: "var(--accent)"
+  mdc-theme-primary: "var(--accent)"
+
+  # Icons
+  state-icon-color: "#A0A0A0"
+  state-icon-active-color: "var(--accent)"
+  sidebar-selected-icon-color: "var(--accent)"
+  sidebar-icon-color: "#A0A0A0"
+
+  # Badges
+  ha-label-badge-color: "var(--accent)"
+  label-badge-background-color: "#121212"
+  label-badge-text-color: "var(--secondary-text-color)"
+
+  # Tabs
+  paper-tab-ink: "var(--accent)"
+
+  # Divider
+  divider-color: "#2D2D2D"
+
+  # Lumo
+  lumo-base-color: "#2D2D2D"
+  lumo-tint-5pct: "none"
+  lumo-shade-5pct: "#272727"
+  paper-grey-200: "#272727"
+  lumo-primary-color-10pct: "#2D2D2D"
+  lumo-primary-color-50pct: "none"
+  lumo-box-shadow-m: "none"
+  lumo-primary-color: "var(--accent)"
+  lumo-header-text-color: "var(--primary-text-color)"
+  lumo-body-text-color: "var(--primary-text-color)"
+  lumo-tertiary-text-color: "var(--secondary-text-color)"
+  lumo-primary-contrast-color: "var(--primary-text-color)"

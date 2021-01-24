@@ -1,0 +1,141 @@
+homeassistant:
+  customize: !include customize.yaml
+
+# Configure a default setup of Home Assistant (frontend, api, etc)
+default_config:
+
+frontend:
+  themes: !include themes.yaml
+
+# Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+# http:
+#   base_url: example.duckdns.org:8123
+
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+sensor: !include sensors.yaml
+rest_command: !include rest-commands.yaml
+
+discovery:
+
+influxdb:
+  host: !secret influxdb_host
+  tags_attributes:
+    - friendly_name
+
+logger:
+  default: warning
+  logs:
+    homeassistant.components.homekit: warning
+    pyhap: warning
+
+rfxtrx:
+  device: usb-RFXCOM_RFXtrx433_A19E1SU-if00-port0
+  automatic_add: true
+  devices:
+    0a520a06a60300ed390169: #Sensor Buiten
+    0a520700370e00e3310179: #Sensor Woonkamer
+    0a5207014c0e00ea2c0169: #Sensor Kamer Ronja
+    0a5207042d0e00d9390159: #Senson Badkamer
+    '0710013744010160': #Lamp Keuken
+    '0710014344020160': #Verlichting woonkamer
+    '0710010a44030160': #TV+Versterker
+    '0710012643010160': #Kastverlichting slaapkamer
+    '0710012b43020160': #Bedlampje slaapkamer
+    '0710012f42020160': #Werkplek kantoor
+
+solaredge:
+  api_key: !secret solaredge_api_key
+  site_id: !secret solaredge_site_id
+
+recorder:
+  purge_keep_days: 7
+  exclude:
+    domains:
+      - automation
+      - updater
+      - switch
+      - binary_sensor
+      - sensor
+      - media_player
+      - device_tracker
+      - light
+      - input_boolean
+      - persistent_notification
+    entities:
+      - sun.sun
+  include:
+    entities:
+      - sensor.badkamer_temperature
+      - sensor.kamer_ronja_temperature
+      - sensor.woonkamer_temperature
+      - sensor.kantoor_temperature
+      - sensor.badkamer_humidity
+      - sensor.kamer_ronja_humidity
+      - sensor.woonkamer_humidity
+      - sensor.kantoor_humidity
+      - sensor.hourly_gas_consumption_alt
+      - sensor.daily_gas_consumption
+      - sensor.gas_consumption
+      - sensor.solar_energy_production
+      - sensor.hourly_solar_energy_production
+      - sensor.daily_solar_energy_production
+      - sensor.hourly_energy_used
+      - sensor.net_energy_consumption
+      - sensor.hourly_net_energy_consumption
+      - sensor.daily_net_energy_consumption
+
+light:
+  - platform: template
+    lights:
+      volume:
+        friendly_name: "Volume"
+        value_template: "{{ is_state('media_player.sony_receiver', 'on') }}"
+        turn_on:
+          service: media_player.turn_on
+          data:
+            entity_id: media_player.sony_receiver
+        turn_off:
+          service: media_player.turn_off
+          data:
+            entity_id: media_player.sony_receiver
+        set_level:
+          service: media_player.volume_set
+          data_template:
+            entity_id: media_player.sony_receiver
+            volume_level: "{{ brightness / 512 }}"
+        level_template: "{{ (state_attr('media_player.sony_receiver', 'volume_level')|float * 512)|int }}"  
+
+lovelace:
+  mode: yaml
+  resources:
+    - url: /hacsfiles/mini-graph-card/mini-graph-card-bundle.js
+      type: module    
+    - url: /hacsfiles/banner-card/banner-card.js
+      type: module
+
+utility_meter:
+  hourly_net_energy_consumption:
+    source: sensor.net_energy_consumption
+    cycle: hourly
+    net_consumption: true
+  daily_net_energy_consumption:
+    source: sensor.net_energy_consumption
+    cycle: daily
+    net_consumption: true
+  hourly_solar_energy_production:
+    source: sensor.solar_energy_production
+    cycle: hourly
+  daily_solar_energy_production:
+    source: sensor.solar_energy_production
+    cycle: daily
+  hourly_gas_consumption_alt:
+    source: sensor.gas_consumption
+    cycle: hourly
+  daily_gas_consumption:
+    source: sensor.gas_consumption
+    cycle: daily
+  weekly_gas_consumption:
+    source: sensor.gas_consumption
+    cycle: weekly

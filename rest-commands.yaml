@@ -1,0 +1,16 @@
+  sony_bravia_tv_picture_off:
+    url: !secret sony_bravia_tv_url
+    method: POST
+    headers:
+      x-auth-psk: '0000'
+      accept: 'application/json'
+    payload: '{"method": "setPowerSavingMode","id": 52,"params": [{"mode": "pictureOff"}],"version": "1.0"}'
+    content_type:  'application/json; charset=utf-8'
+  sony_bravia_tv_picture_on:
+    url: !secret sony_bravia_tv_url
+    method: POST
+    headers:
+      x-auth-psk: '0000'
+      accept: 'application/json'
+    payload: '{"method": "setPowerSavingMode","id": 52,"params": [{"mode": "off"}],"version": "1.0"}'
+    content_type:  'application/json; charset=utf-8'    

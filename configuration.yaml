@@ -38,9 +38,9 @@ rfxtrx:
     0a520700370e00e3310179: #Sensor Woonkamer
     0a5207014c0e00ea2c0169: #Sensor Kamer Ronja
     0a5207042d0e00d9390159: #Senson Badkamer
-    '0710013744010160': #Lamp Keuken
-    '0710014344020160': #Verlichting woonkamer
-    '0710010a44030160': #TV+Versterker
+    # '0710013744010160': #Lamp Keuken
+    # '0710014344020160': #Verlichting woonkamer
+    # '0710010a44030160': #TV+Versterker
     '0710012643010160': #Kastverlichting slaapkamer
     '0710012b43020160': #Bedlampje slaapkamer
     '0710012f42020160': #Werkplek kantoor
